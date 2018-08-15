@@ -34,17 +34,14 @@ class TwitterController extends Controller
         if (empty($account->user_id))
         {
             $u = User::create([
-                'name'   => $user->getName(),
-                'email'  => (empty($user->getEmail())?$user->getName()."@twitter.example.com":$user->getEmail()),
+                'name'   => $user->getId,
+                'email'  => (empty($user->getEmail())?$user->getId."@twitter.example.com":$user->getEmail()),
                 'password' => uniqid(),
             ]);
             $account->user_id = $u->id;
         }
         $account->save();
         \Auth::login(User::find($account->user_id));
-       // var_dump($user);
-    //    var_dump($account);
         var_dump(\Auth::check());
-        // $user->token;
     }
 }
