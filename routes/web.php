@@ -15,6 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/test', function () {
+    var_dump(\Auth::check());
+    return "check=".\Auth::check();
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
